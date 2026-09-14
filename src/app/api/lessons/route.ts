@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getLessons } from '@/lib/db/repo';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const lessons = getLessons();

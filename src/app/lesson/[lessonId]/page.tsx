@@ -60,6 +60,7 @@ export default function LessonPlayerPage() {
   } = useLessonStore();
 
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [hookTimer, setHookTimer] = useState<number>(20);
   const [hookAnswer, setHookAnswer] = useState('');
   const [hookTimerTotal, setHookTimerTotal] = useState(20);
@@ -77,14 +78,21 @@ export default function LessonPlayerPage() {
     if (!lessonId) return;
 
     fetch(`/api/lessons/${lessonId}`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error('Lesson not found');
+        return res.json();
+      })
       .then((data: Lesson) => {
+        if (!data || !data.id || !data.sections || !Array.isArray(data.sections)) {
+          throw new Error('Lesson data is invalid');
+        }
         const childId = activeChild?.id || 'child_mia_001';
         initLesson(data, childId);
         setLoading(false);
       })
       .catch((err) => {
         console.error('Failed to load lesson:', err);
+        setLoadError(err.message || 'Failed to load lesson');
         setLoading(false);
       });
 
@@ -165,6 +173,30 @@ export default function LessonPlayerPage() {
     if (completionSummary.score >= 90 && totalHintsUsed === 0) return 3;
     if (completionSummary.score >= 70) return 2;
     return 1;
+  }
+
+  if (loadError) {
+    return (
+      <div className="min-h-[60vh] flex flex-col items-center justify-center gap-6 text-center max-w-md mx-auto p-6">
+        <div className="w-20 h-20 rounded-3xl bg-attention-light/60 border border-attention text-attention-dark flex items-center justify-center text-4xl shadow-soft">
+          🧠
+        </div>
+        <div className="space-y-2">
+          <h2 className="font-heading font-extrabold text-2xl text-ink">
+            Mission Not Found
+          </h2>
+          <p className="text-sm font-bold text-ink-muted">
+            We couldn't locate this memory quest. It may still be under development or the link is expired.
+          </p>
+        </div>
+        <button
+          onClick={() => router.push('/learn')}
+          className="px-8 py-3.5 rounded-full bg-primary text-white font-heading font-bold shadow-float hover:bg-primary-dark transition-all btn-bouncy"
+        >
+          Explore Technique Library
+        </button>
+      </div>
+    );
   }
 
   if (loading || !lesson) {

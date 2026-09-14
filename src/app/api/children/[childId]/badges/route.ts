@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getChildProgress } from '@/lib/db/repo';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(
   req: NextRequest,
   { params }: { params: { childId: string } }

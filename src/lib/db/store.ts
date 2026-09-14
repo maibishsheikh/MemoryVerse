@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 import {
   Lesson,
   ChildProfile,
@@ -10,6 +11,21 @@ import {
   UserBadge,
   MasteryStage,
 } from '@/types/lesson';
+
+// Statically import all curriculum lessons so they are bundled into serverless builds
+import chunkingData from '@/content/lessons/chunking.json';
+import memoryPalaceData from '@/content/lessons/memory-palace.json';
+import mnemonicsData from '@/content/lessons/mnemonics.json';
+import vedicX11Data from '@/content/lessons/vedic-x11.json';
+import visualAssociationData from '@/content/lessons/visual-association.json';
+
+const ALL_STATIC_LESSONS: Lesson[] = [
+  vedicX11Data as unknown as Lesson,
+  visualAssociationData as unknown as Lesson,
+  memoryPalaceData as unknown as Lesson,
+  chunkingData as unknown as Lesson,
+  mnemonicsData as unknown as Lesson,
+];
 
 export interface LessonAttemptRecord {
   id: string;
@@ -69,7 +85,23 @@ export interface DbSchema {
   analytics_events: AnalyticsEventRecord[];
 }
 
-const DB_FILE = path.join(process.cwd(), 'data', 'memory_db.json');
+function getDbFilePath(): string {
+  // On Vercel or AWS Lambda, the root is read-only; use /tmp which is writable
+  if (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME) {
+    return path.join(os.tmpdir(), 'memory_db.json');
+  }
+
+  // Locally, attempt to use the data/ directory with fallback to /tmp
+  try {
+    const localDir = path.join(process.cwd(), 'data');
+    if (!fs.existsSync(localDir)) {
+      fs.mkdirSync(localDir, { recursive: true });
+    }
+    return path.join(localDir, 'memory_db.json');
+  } catch {
+    return path.join(os.tmpdir(), 'memory_db.json');
+  }
+}
 
 function getDefaultDb(): DbSchema {
   return {
@@ -106,7 +138,7 @@ function getDefaultDb(): DbSchema {
         createdAt: new Date().toISOString(),
       },
     ],
-    lessons: [],
+    lessons: [...ALL_STATIC_LESSONS],
     lesson_attempts: [],
     question_attempts: [],
     mastery_records: [],
@@ -157,70 +189,78 @@ function getDefaultDb(): DbSchema {
 let inMemoryDb: DbSchema | null = null;
 
 export function loadDb(): DbSchema {
-  if (inMemoryDb) return inMemoryDb;
-
-  const dataDir = path.dirname(DB_FILE);
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
+  if (inMemoryDb) {
+    ensureLessons(inMemoryDb);
+    return inMemoryDb;
   }
 
-  if (fs.existsSync(DB_FILE)) {
-    try {
-      const raw = fs.readFileSync(DB_FILE, 'utf8');
+  const dbPath = getDbFilePath();
+  try {
+    if (fs.existsSync(dbPath)) {
+      const raw = fs.readFileSync(dbPath, 'utf8');
       inMemoryDb = JSON.parse(raw);
-    } catch {
-      inMemoryDb = getDefaultDb();
-      saveDb(inMemoryDb);
     }
-  } else {
-    inMemoryDb = getDefaultDb();
-    saveDb(inMemoryDb);
+  } catch (err) {
+    console.warn('Could not read persistent DB, falling back to default:', err);
   }
 
-  // Always sync lessons from content/lessons/
-  syncLessons(inMemoryDb!);
-  return inMemoryDb!;
+  if (!inMemoryDb) {
+    inMemoryDb = getDefaultDb();
+  }
+
+  ensureLessons(inMemoryDb);
+  saveDb(inMemoryDb);
+  return inMemoryDb;
 }
 
 export function saveDb(db: DbSchema): void {
   inMemoryDb = db;
-  const dataDir = path.dirname(DB_FILE);
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
+  try {
+    const dbPath = getDbFilePath();
+    const dir = path.dirname(dbPath);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    const tempFile = `${dbPath}.${Date.now()}.${Math.random().toString(36).slice(2, 6)}.tmp`;
+    fs.writeFileSync(tempFile, JSON.stringify(db, null, 2), 'utf8');
+    fs.renameSync(tempFile, dbPath);
+  } catch (err) {
+    // Graceful fallback for read-only environments (e.g. Vercel serverless without disk access)
+    console.warn('Persistent DB write failed, fallback to in-memory state:', err);
   }
-  const tempFile = `${DB_FILE}.tmp`;
-  fs.writeFileSync(tempFile, JSON.stringify(db, null, 2), 'utf8');
-  fs.renameSync(tempFile, DB_FILE);
 }
 
-function syncLessons(db: DbSchema) {
-  const contentDir = path.join(process.cwd(), 'src', 'content', 'lessons');
-  if (!fs.existsSync(contentDir)) return;
-
-  const files = fs.readdirSync(contentDir).filter((f) => f.endsWith('.json'));
-  const syncedLessons: Lesson[] = [];
-
-  for (const file of files) {
-    try {
-      const fullPath = path.join(contentDir, file);
-      const raw = fs.readFileSync(fullPath, 'utf8');
-      const lesson = JSON.parse(raw) as Lesson;
-      syncedLessons.push(lesson);
-    } catch (err) {
-      console.error(`Failed to parse lesson file ${file}:`, err);
+function ensureLessons(db: DbSchema): void {
+  if (!db.lessons) {
+    db.lessons = [];
+  }
+  for (const staticLesson of ALL_STATIC_LESSONS) {
+    const idx = db.lessons.findIndex((l) => l.id === staticLesson.id);
+    if (idx >= 0) {
+      db.lessons[idx] = staticLesson;
+    } else {
+      db.lessons.push(staticLesson);
     }
   }
 
-  if (syncedLessons.length > 0) {
-    // Merge with existing lessons
-    for (const newLesson of syncedLessons) {
-      const idx = db.lessons.findIndex((l) => l.id === newLesson.id);
-      if (idx >= 0) {
-        db.lessons[idx] = newLesson;
-      } else {
-        db.lessons.push(newLesson);
+  // Attempt local sync if files exist in dev environment
+  try {
+    const contentDir = path.join(process.cwd(), 'src', 'content', 'lessons');
+    if (fs.existsSync(contentDir)) {
+      const files = fs.readdirSync(contentDir).filter((f) => f.endsWith('.json'));
+      for (const file of files) {
+        try {
+          const fullPath = path.join(contentDir, file);
+          const raw = fs.readFileSync(fullPath, 'utf8');
+          const lesson = JSON.parse(raw) as Lesson;
+          const idx = db.lessons.findIndex((l) => l.id === lesson.id);
+          if (idx >= 0) {
+            db.lessons[idx] = lesson;
+          } else {
+            db.lessons.push(lesson);
+          }
+        } catch {}
       }
     }
-    saveDb(db);
-  }
+  } catch {}
 }

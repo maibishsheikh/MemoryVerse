@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getChildren, createChild } from '@/lib/db/repo';
 import { z } from 'zod';
 
+export const dynamic = 'force-dynamic';
+
 const CreateChildSchema = z.object({
   displayName: z.string().min(1).max(50),
   ageBand: z.enum(['explorer', 'builder', 'challenger']),
