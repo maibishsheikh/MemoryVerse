@@ -1,0 +1,198 @@
+{
+  "id": "visual-association",
+  "title": "Visual Pegs & Picture Links",
+  "subtitle": "Turn boring numbers into unforgettable picture stories!",
+  "techniqueCategory": "visual_association",
+  "ageRange": [7, 13],
+  "badgeOnComplete": "pattern-spotter",
+  "sections": [
+    {
+      "type": "hook",
+      "prompt": "Can you memorize this random 4-item grocery list in 15 seconds: Apples, Milk, Bread, Honey?",
+      "subtext": "Try creating an image in your mind before we show you the peg secret!",
+      "timerSeconds": 15
+    },
+    {
+      "type": "story",
+      "panels": [
+        {
+          "id": 1,
+          "image": "aarav-forgetting",
+          "character": "aarav",
+          "text": "Aarav keeps forgetting lists and pin codes. Numbers look like dry black ink on white paper.",
+          "duration": 5
+        },
+        {
+          "id": 2,
+          "image": "professor-showing-swan",
+          "character": "professor_piko",
+          "text": "Professor Piko says: 'Your brain thinks in pictures, not numbers! Look at the number 2—what does it look like? A graceful Swan!'",
+          "duration": 6
+        },
+        {
+          "id": 3,
+          "image": "pegs-showcase",
+          "character": "professor_piko",
+          "text": "2 is a Swan 🦢, 5 is a Hand ✋ (5 fingers), 7 is a sharp Axe 🪓, and 8 is a Snowman ⛄!",
+          "duration": 6
+        },
+        {
+          "id": 4,
+          "image": "aarav-connecting",
+          "character": "aarav",
+          "text": "If I need to remember item #2 is Milk, I picture a Swan swimming in a lake of cold Milk! It's so silly I can never forget it!",
+          "duration": 6
+        },
+        {
+          "id": 5,
+          "image": "byte-excited",
+          "character": "byte",
+          "text": "BEEP! Picture power activated! Let's connect numbers to pegs in the simulation!",
+          "duration": 4
+        }
+      ]
+    },
+    {
+      "type": "explanation",
+      "title": "The Number-Shape Peg System",
+      "summary": "Attach each number to a vivid object shaped like the number. When you see the number, the picture pops up!",
+      "animation": {
+        "pegs": [
+          { "number": 2, "shape": "🦢 Swan (curves like a 2)" },
+          { "number": 5, "shape": "✋ Glove / Hand (5 fingers)" },
+          { "number": 7, "shape": "🪓 Cliff / Axe (sharp angle)" },
+          { "number": 8, "shape": "⛄ Snowman (two stacked circles)" }
+        ]
+      }
+    },
+    {
+      "type": "simulation",
+      "config": {
+        "simulationType": "visual_association",
+        "objects": [
+          { "id": "peg-2", "number": 2, "peg": "Swan", "icon": "🦢", "target": "Lake of Milk" },
+          { "id": "peg-5", "number": 5, "peg": "Hand", "icon": "✋", "target": "Gold Ring" },
+          { "id": "peg-7", "number": 7, "peg": "Axe", "icon": "🪓", "target": "Wooden Log" },
+          { "id": "peg-8", "number": 8, "peg": "Snowman", "icon": "⛄", "target": "Carrot Nose" }
+        ],
+        "interactions": [
+          "Drag each number to its matching picture peg shape",
+          "Link the peg to the item to lock it into memory"
+        ],
+        "validation": { "totalLinked": 4 },
+        "completionCondition": "All 4 number pegs correctly linked to their visual objects"
+      }
+    },
+    {
+      "type": "practice",
+      "level": "guided",
+      "questions": [
+        {
+          "id": "q101",
+          "type": "single_select",
+          "prompt": "In the Number-Shape peg system, why does the number 2 represent a Swan 🦢?",
+          "options": [
+            { "id": "a", "label": "Because the curved neck of a swan looks just like the curve of a 2" },
+            { "id": "b", "label": "Because swans have 2 wings" },
+            { "id": "c", "label": "Because swans live in pairs" }
+          ],
+          "answer": "a",
+          "difficulty": 1,
+          "hints": [
+            "Look at the shape of the digit 2 and the shape of a swan's neck."
+          ],
+          "supportLevel": "guided"
+        },
+        {
+          "id": "q102",
+          "type": "matching",
+          "prompt": "Match each number to its visual peg shape:",
+          "pairs": [
+            { "left": { "id": "2", "label": "Number 2" }, "right": { "id": "swan", "label": "🦢 Swan" } },
+            { "left": { "id": "5", "label": "Number 5" }, "right": { "id": "hand", "label": "✋ Hand (5 fingers)" } },
+            { "left": { "id": "7", "label": "Number 7" }, "right": { "id": "axe", "label": "🪓 Axe / Pickaxe" } },
+            { "left": { "id": "8", "label": "Number 8" }, "right": { "id": "snowman", "label": "⛄ Snowman" } }
+          ],
+          "answer": { "2": "swan", "5": "hand", "7": "axe", "8": "snowman" },
+          "difficulty": 2,
+          "hints": [
+            "Think about 8 looking like two stacked snowballs!"
+          ],
+          "supportLevel": "guided"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "level": "independent",
+      "questions": [
+        {
+          "id": "q103",
+          "type": "single_select",
+          "prompt": "You need to remember code 8-2. What mental movie creates the strongest visual memory?",
+          "options": [
+            { "id": "a", "label": "A Snowman ⛄ riding on the back of a giant Swan 🦢" },
+            { "id": "b", "label": "Writing 8 and 2 on a piece of paper" },
+            { "id": "c", "label": "Repeating 'eight two eight two' ten times" }
+          ],
+          "answer": "a",
+          "difficulty": 2,
+          "hints": ["Remember: vivid, colorful, silly interactions stick forever!"],
+          "supportLevel": "independent"
+        },
+        {
+          "id": "q104",
+          "type": "single_select",
+          "prompt": "If peg 7 is an Axe 🪓 and item #7 is a Watermelon 🍉, how should you link them?",
+          "options": [
+            { "id": "a", "label": "An Axe slicing open a giant juicy Watermelon with seeds exploding everywhere" },
+            { "id": "b", "label": "Putting watermelon in the fridge" },
+            { "id": "c", "label": "Saying 7 is watermelon" }
+          ],
+          "answer": "a",
+          "difficulty": 2,
+          "hints": ["Exaggerated action makes recall instant!"],
+          "supportLevel": "independent"
+        }
+      ]
+    },
+    {
+      "type": "recall",
+      "questions": [
+        {
+          "id": "q105",
+          "type": "single_select",
+          "prompt": "Independent Recall: What was the peg shape for number 8?",
+          "options": [
+            { "id": "a", "label": "⛄ Snowman" },
+            { "id": "b", "label": "🦢 Swan" },
+            { "id": "c", "label": "🪓 Axe" },
+            { "id": "d", "label": "✋ Hand" }
+          ],
+          "answer": "a",
+          "difficulty": 2,
+          "hints": [],
+          "supportLevel": "independent"
+        },
+        {
+          "id": "q106",
+          "type": "single_select",
+          "prompt": "Independent Recall: What was the peg shape for number 7?",
+          "options": [
+            { "id": "a", "label": "🪓 Axe" },
+            { "id": "b", "label": "⛄ Snowman" },
+            { "id": "c", "label": "⛵ Sailboat" },
+            { "id": "d", "label": "🕯️ Candle" }
+          ],
+          "answer": "a",
+          "difficulty": 2,
+          "hints": [],
+          "supportLevel": "independent"
+        }
+      ]
+    },
+    {
+      "type": "result"
+    }
+  ]
+}

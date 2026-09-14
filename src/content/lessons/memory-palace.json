@@ -1,0 +1,186 @@
+{
+  "id": "memory-palace",
+  "title": "The Memory Palace",
+  "subtitle": "Store items in rooms of your imagination and walk through to recall everything!",
+  "techniqueCategory": "memory_palace",
+  "ageRange": [8, 14],
+  "badgeOnComplete": "palace-builder",
+  "sections": [
+    {
+      "type": "hook",
+      "prompt": "Can you remember 5 items placed in random spots without writing them down?",
+      "subtext": "Ancient Greek orators used this exact spatial superpower 2,500 years ago!",
+      "timerSeconds": 15
+    },
+    {
+      "type": "story",
+      "panels": [
+        {
+          "id": 1,
+          "image": "mia-overwhelmed",
+          "character": "mia",
+          "text": "Mia has to give a speech with 5 key points. Every time she practices, her mind goes completely blank!",
+          "duration": 5
+        },
+        {
+          "id": 2,
+          "image": "professor-building",
+          "character": "professor_piko",
+          "text": "Professor Piko smiles: 'You have a giant supercomputer in your brain dedicated just to navigation! Let's build a Memory Palace in your bedroom.'",
+          "duration": 6
+        },
+        {
+          "id": 3,
+          "image": "room-locations",
+          "character": "professor_piko",
+          "text": "Pick 5 fixed stations in order: 1. Door 🚪 -> 2. Bed 🛏️ -> 3. Desk 🖥️ -> 4. Bookshelf 📚 -> 5. Window 🪟.",
+          "duration": 6
+        },
+        {
+          "id": 4,
+          "image": "mia-walking",
+          "character": "mia",
+          "text": "When I place a glowing Key at the Door, a bouncing Robot on my Bed, and a flying Rocket on my Desk, I just walk through my room to remember!",
+          "duration": 6
+        },
+        {
+          "id": 5,
+          "image": "byte-robot",
+          "character": "byte",
+          "text": "BOOP! Step inside your palace simulation and test your spatial navigation recall!",
+          "duration": 4
+        }
+      ]
+    },
+    {
+      "type": "explanation",
+      "title": "The Method of Loci (Palace Route)",
+      "summary": "1. Pick a familiar room  |  2. Fix a clockwise path through 5 landmarks  |  3. Place vivid items at each spot  |  4. Walk the path to retrieve",
+      "animation": {
+        "loci": [
+          { "order": 1, "name": "Front Door", "icon": "🚪" },
+          { "order": 2, "name": "Cozy Bed", "icon": "🛏️" },
+          { "order": 3, "name": "Study Desk", "icon": "🖥️" },
+          { "order": 4, "name": "Tall Bookshelf", "icon": "📚" },
+          { "order": 5, "name": "Sunny Window", "icon": "🪟" }
+        ]
+      }
+    },
+    {
+      "type": "simulation",
+      "config": {
+        "simulationType": "memory_palace",
+        "objects": [
+          { "id": "obj-key", "name": "Golden Key", "icon": "🔑", "targetLocus": "door" },
+          { "id": "obj-robot", "name": "Dancing Robot", "icon": "🤖", "targetLocus": "bed" },
+          { "id": "obj-telescope", "name": "Star Telescope", "icon": "🔭", "targetLocus": "desk" },
+          { "id": "obj-crystal", "name": "Magic Crystal", "icon": "💎", "targetLocus": "bookshelf" },
+          { "id": "obj-kite", "name": "Rainbow Kite", "icon": "🪁", "targetLocus": "window" }
+        ],
+        "interactions": [
+          "Drag each object onto its specific room station",
+          "Walk through the loci in order to verify your mental journey"
+        ],
+        "validation": { "totalPlaced": 5 },
+        "completionCondition": "All 5 objects placed at their correct loci stations"
+      }
+    },
+    {
+      "type": "practice",
+      "level": "guided",
+      "questions": [
+        {
+          "id": "q201",
+          "type": "single_select",
+          "prompt": "Why is it important to always walk through your Memory Palace in the exact same order?",
+          "options": [
+            { "id": "a", "label": "So you can recall items in exact sequence without missing any station" },
+            { "id": "b", "label": "Because the objects might disappear if you turn backwards" },
+            { "id": "c", "label": "Because doors can only be opened from the outside" }
+          ],
+          "answer": "a",
+          "difficulty": 1,
+          "hints": [
+            "A fixed route keeps your thoughts organized and guarantees 100% recall completeness."
+          ],
+          "supportLevel": "guided"
+        },
+        {
+          "id": "q202",
+          "type": "ordering",
+          "prompt": "Arrange the Bedroom Palace stations in the correct clockwise order:",
+          "options": [
+            { "id": "1", "label": "1. Entrance Door 🚪" },
+            { "id": "2", "label": "2. Cozy Bed 🛏️" },
+            { "id": "3", "label": "3. Study Desk 🖥️" },
+            { "id": "4", "label": "4. Tall Bookshelf 📚" },
+            { "id": "5", "label": "5. Sunny Window 🪟" }
+          ],
+          "answer": ["1", "2", "3", "4", "5"],
+          "difficulty": 2,
+          "hints": ["Start from the door where you enter the room."],
+          "supportLevel": "guided"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "level": "independent",
+      "questions": [
+        {
+          "id": "q203",
+          "type": "single_select",
+          "prompt": "In the simulation, which item was placed on the Bed 🛏️?",
+          "options": [
+            { "id": "a", "label": "🤖 Dancing Robot" },
+            { "id": "b", "label": "🔑 Golden Key" },
+            { "id": "c", "label": "💎 Magic Crystal" },
+            { "id": "d", "label": "🪁 Rainbow Kite" }
+          ],
+          "answer": "a",
+          "difficulty": 2,
+          "hints": ["Picture the robot jumping on the mattress!"],
+          "supportLevel": "independent"
+        },
+        {
+          "id": "q204",
+          "type": "single_select",
+          "prompt": "Which item was placed by the Sunny Window 🪟 catching the outdoor breeze?",
+          "options": [
+            { "id": "a", "label": "🪁 Rainbow Kite" },
+            { "id": "b", "label": "🔭 Star Telescope" },
+            { "id": "c", "label": "🔑 Golden Key" }
+          ],
+          "answer": "a",
+          "difficulty": 2,
+          "hints": ["What flies in the sky right outside the window?"],
+          "supportLevel": "independent"
+        }
+      ]
+    },
+    {
+      "type": "recall",
+      "questions": [
+        {
+          "id": "q205",
+          "type": "ordering",
+          "prompt": "Independent Recall: Put the 5 items in the exact order they appeared on your palace path:",
+          "options": [
+            { "id": "key", "label": "🔑 Golden Key (at Door)" },
+            { "id": "robot", "label": "🤖 Dancing Robot (on Bed)" },
+            { "id": "telescope", "label": "🔭 Star Telescope (at Desk)" },
+            { "id": "crystal", "label": "💎 Magic Crystal (on Bookshelf)" },
+            { "id": "kite", "label": "🪁 Rainbow Kite (at Window)" }
+          ],
+          "answer": ["key", "robot", "telescope", "crystal", "kite"],
+          "difficulty": 3,
+          "hints": [],
+          "supportLevel": "independent"
+        }
+      ]
+    },
+    {
+      "type": "result"
+    }
+  ]
+}

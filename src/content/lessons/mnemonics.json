@@ -1,0 +1,174 @@
+{
+  "id": "mnemonics",
+  "title": "Mnemonic Magic & Acronyms",
+  "subtitle": "Create hilarious sentences to remember any list in perfect order!",
+  "techniqueCategory": "mnemonics",
+  "ageRange": [8, 14],
+  "badgeOnComplete": "memory-explorer",
+  "sections": [
+    {
+      "type": "hook",
+      "prompt": "Can you name all 8 planets in order from the Sun without searching?",
+      "subtext": "Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune...",
+      "timerSeconds": 15
+    },
+    {
+      "type": "story",
+      "panels": [
+        {
+          "id": 1,
+          "image": "mia-planets",
+          "character": "mia",
+          "text": "Mia has a big science quiz tomorrow on the Solar System planets in order from the Sun. Mercury, Venus, Earth, Mars... and she gets stuck!",
+          "duration": 5
+        },
+        {
+          "id": 2,
+          "image": "professor-pie",
+          "character": "professor_piko",
+          "text": "Professor Piko grins: 'Take the first letter of each planet: M - V - E - M - J - S - U - N. Now make a funny sentence out of them!'",
+          "duration": 6
+        },
+        {
+          "id": 3,
+          "image": "nachos-sentence",
+          "character": "professor_piko",
+          "text": "'My Very Educated Mother Just Served Us Nachos!' M=Mercury, V=Venus, E=Earth, M=Mars, J=Jupiter, S=Saturn, U=Uranus, N=Neptune!",
+          "duration": 7
+        },
+        {
+          "id": 4,
+          "image": "mia-delighted",
+          "character": "mia",
+          "text": "Nachos in space! Every time I think of hungry space astronauts eating nachos, the whole solar system pops into my head!",
+          "duration": 6
+        },
+        {
+          "id": 5,
+          "image": "byte-space",
+          "character": "byte",
+          "text": "COSMIC MNEMONIC ENGINE READY! Let's build sentence bridges in the simulation!",
+          "duration": 4
+        }
+      ]
+    },
+    {
+      "type": "explanation",
+      "title": "The First-Letter Mnemonic Formula",
+      "summary": "1. Write initial letters of target items  |  2. Turn letters into an amusing memorable sentence  |  3. Connect sentence back to original list",
+      "animation": {
+        "acronym": [
+          { "letter": "M", "word": "My", "target": "Mercury" },
+          { "letter": "V", "word": "Very", "target": "Venus" },
+          { "letter": "E", "word": "Educated", "target": "Earth" },
+          { "letter": "M", "word": "Mother", "target": "Mars" },
+          { "letter": "J", "word": "Just", "target": "Jupiter" },
+          { "letter": "S", "word": "Served", "target": "Saturn" },
+          { "letter": "U", "word": "Us", "target": "Uranus" },
+          { "letter": "N", "word": "Nachos", "target": "Neptune" }
+        ]
+      }
+    },
+    {
+      "type": "simulation",
+      "config": {
+        "simulationType": "mnemonics",
+        "objects": [
+          { "id": "w1", "letter": "M", "word": "My", "planet": "Mercury ☿️" },
+          { "id": "w2", "letter": "V", "word": "Very", "planet": "Venus ♀️" },
+          { "id": "w3", "letter": "E", "word": "Educated", "planet": "Earth 🌍" },
+          { "id": "w4", "letter": "M", "word": "Mother", "planet": "Mars ♂️" },
+          { "id": "w5", "letter": "J", "word": "Just", "planet": "Jupiter ♃" },
+          { "id": "w6", "letter": "S", "word": "Served", "planet": "Saturn ♄" },
+          { "id": "w7", "letter": "U", "word": "Us", "planet": "Uranus ♅" },
+          { "id": "w8", "letter": "N", "word": "Nachos", "planet": "Neptune ♆" }
+        ],
+        "interactions": [
+          "Order the word cards to complete the sentence: My Very Educated Mother Just Served Us Nachos",
+          "Match each initial letter to its corresponding solar planet"
+        ],
+        "validation": { "sentence": "My Very Educated Mother Just Served Us Nachos" },
+        "completionCondition": "All 8 mnemonic cards arranged in solar sequence"
+      }
+    },
+    {
+      "type": "practice",
+      "level": "guided",
+      "questions": [
+        {
+          "id": "q401",
+          "type": "single_select",
+          "prompt": "In 'My Very Educated Mother Just Served Us Nachos', what planet does the letter 'J' (Just) stand for?",
+          "options": [
+            { "id": "a", "label": "🪐 Jupiter (the largest planet)" },
+            { "id": "b", "label": "Juno" },
+            { "id": "c", "label": "Janus" }
+          ],
+          "answer": "a",
+          "difficulty": 1,
+          "hints": [
+            "Think of the giant gas planet after Mars!"
+          ],
+          "supportLevel": "guided"
+        },
+        {
+          "id": "q402",
+          "type": "single_select",
+          "prompt": "What does PEMDAS stand for in maths (Please Excuse My Dear Aunt Sally)?",
+          "options": [
+            { "id": "a", "label": "Parentheses, Exponents, Multiplication, Division, Addition, Subtraction" },
+            { "id": "b", "label": "Plus, Equals, Minus, Divide, Add, Subtract" },
+            { "id": "c", "label": "Points, Equations, Multiplying, Decimals, Angles, Shapes" }
+          ],
+          "answer": "a",
+          "difficulty": 2,
+          "hints": ["P is for Parentheses, E is for Exponents..."],
+          "supportLevel": "guided"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "level": "independent",
+      "questions": [
+        {
+          "id": "q403",
+          "type": "single_select",
+          "prompt": "Which planet comes 4th from the Sun according to the mnemonic (Mother)?",
+          "options": [
+            { "id": "a", "label": "🔴 Mars (Red Planet)" },
+            { "id": "b", "label": "Mercury" },
+            { "id": "c", "label": "Jupiter" }
+          ],
+          "answer": "a",
+          "difficulty": 2,
+          "hints": ["My (1) Very (2) Educated (3) Mother (4)..."],
+          "supportLevel": "independent"
+        }
+      ]
+    },
+    {
+      "type": "recall",
+      "questions": [
+        {
+          "id": "q404",
+          "type": "ordering",
+          "prompt": "Independent Recall: Order the first 4 planets from the Sun using the mnemonic:",
+          "options": [
+            { "id": "merc", "label": "1. Mercury (My)" },
+            { "id": "ven", "label": "2. Venus (Very)" },
+            { "id": "ear", "label": "3. Earth (Educated)" },
+            { "id": "mar", "label": "4. Mars (Mother)" }
+          ],
+          "answer": ["merc", "ven", "ear", "mar"],
+          "difficulty": 2,
+          "hints": [],
+          "supportLevel": "independent"
+        }
+      ]
+    },
+    {
+      "type": "result"
+    }
+  ]
+}

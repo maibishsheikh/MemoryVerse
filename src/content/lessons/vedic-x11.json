@@ -1,0 +1,169 @@
+{
+  "id": "vedic-x11",
+  "title": "The Magic of 11",
+  "subtitle": "Multiply any 2-digit number by 11 in seconds!",
+  "techniqueCategory": "vedic_maths",
+  "ageRange": [8, 12],
+  "badgeOnComplete": "number-ninja",
+  "sections": [
+    {
+      "type": "hook",
+      "prompt": "Can you solve 43 × 11 in your head without a calculator?",
+      "subtext": "Take a quick guess or try solving it before the clock runs down!",
+      "timerSeconds": 20
+    },
+    {
+      "type": "story",
+      "panels": [
+        {
+          "id": 1,
+          "image": "mia-struggling",
+          "character": "mia",
+          "text": "Mia is staring at 43 × 11 on her homework sheet. It feels like it will take forever to multiply!",
+          "duration": 5
+        },
+        {
+          "id": 2,
+          "image": "professor-pointing",
+          "character": "professor_piko",
+          "text": "Professor Piko grins and says: 'There is a secret hiding right between the digits!'",
+          "duration": 5
+        },
+        {
+          "id": 3,
+          "image": "digits-splitting",
+          "character": "professor_piko",
+          "text": "Watch closely: the 4 and 3 move apart, and a glowing 7 appears right between them (4 + 3 = 7)!",
+          "duration": 6
+        },
+        {
+          "id": 4,
+          "image": "mia-happy",
+          "character": "mia",
+          "text": "43 becomes 473! It takes less than two seconds! I found the secret trick!",
+          "duration": 4
+        },
+        {
+          "id": 5,
+          "image": "byte-cheering",
+          "character": "byte",
+          "text": "BEEP BOOP! Now let's put the power into your hands!",
+          "duration": 4
+        }
+      ]
+    },
+    {
+      "type": "explanation",
+      "title": "The 3-Step Pattern",
+      "summary": "1. Split the outer digits  |  2. Add them together  |  3. Place the sum in the middle",
+      "animation": {
+        "steps": [
+          "4       3",
+          "4 + 3 = 7",
+          "4   7   3",
+          "43 × 11 = 473"
+        ]
+      }
+    },
+    {
+      "type": "simulation",
+      "config": {
+        "simulationType": "vedic_x11",
+        "objects": [
+          { "id": "digit-left", "value": 4, "role": "tens" },
+          { "id": "digit-right", "value": 3, "role": "units" }
+        ],
+        "interactions": [
+          "Drag the digits 4 and 3 apart",
+          "Calculate 4 + 3 and type the answer in the glowing middle slot"
+        ],
+        "validation": { "middleDigit": 7 },
+        "completionCondition": "middleDigit entered equals sum of outer digits"
+      }
+    },
+    {
+      "type": "practice",
+      "level": "guided",
+      "questions": [
+        {
+          "id": "q001",
+          "type": "numeric",
+          "prompt": "52 × 11 = ?",
+          "answer": 572,
+          "difficulty": 2,
+          "hints": [
+            "Think about the two outside digits: 5 and 2.",
+            "What is 5 + 2?",
+            "Put that answer (7) between 5 and 2 to make 572!"
+          ],
+          "supportLevel": "guided"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "level": "independent",
+      "questions": [
+        {
+          "id": "q002",
+          "type": "numeric",
+          "prompt": "61 × 11 = ?",
+          "answer": 671,
+          "difficulty": 2,
+          "hints": ["Add the two outside digits (6 + 1)."],
+          "supportLevel": "independent"
+        },
+        {
+          "id": "q003",
+          "type": "numeric",
+          "prompt": "34 × 11 = ?",
+          "answer": 374,
+          "difficulty": 2,
+          "hints": ["Add the two outside digits (3 + 4)."],
+          "supportLevel": "independent"
+        },
+        {
+          "id": "q004",
+          "type": "numeric",
+          "prompt": "72 × 11 = ?",
+          "answer": 792,
+          "difficulty": 2,
+          "hints": ["Add the two outside digits (7 + 2)."],
+          "supportLevel": "independent"
+        }
+      ]
+    },
+    {
+      "type": "recall",
+      "questions": [
+        {
+          "id": "q005",
+          "type": "ordering",
+          "prompt": "Without looking at any clues, put the ×11 trick steps in the correct order!",
+          "options": [
+            { "id": "a", "label": "Keep the first digit on the left" },
+            { "id": "b", "label": "Add the two digits together" },
+            { "id": "c", "label": "Place the sum in the middle" },
+            { "id": "d", "label": "Keep the last digit on the right" }
+          ],
+          "answer": ["a", "b", "c", "d"],
+          "difficulty": 3,
+          "hints": [],
+          "supportLevel": "independent"
+        },
+        {
+          "id": "q006",
+          "type": "numeric",
+          "prompt": "Lightning Recall: Solve 25 × 11 instantly in your head!",
+          "answer": 275,
+          "difficulty": 2,
+          "hints": [],
+          "supportLevel": "independent"
+        }
+      ]
+    },
+    {
+      "type": "result"
+    }
+  ]
+}

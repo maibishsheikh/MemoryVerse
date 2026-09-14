@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #FBF8F3;
+  --bg-lavender: #F3F0FB;
+  --bg-blue: #EFF6FC;
+  --primary: #6C9BD8;
+  --primary-light: #8FB8E8;
+  --primary-dark: #4E7FBE;
+  --secondary: #B79FE0;
+  --secondary-light: #D2C3EE;
+  --secondary-dark: #9A7DC9;
+  --accent: #FFC85C;
+  --accent-light: #FFDA8F;
+  --accent-dark: #E8AC2E;
+  --success: #7BC9A0;
+  --success-light: #A6DEC1;
+  --success-dark: #57A87E;
+  --attention: #FFB27A;
+  --error: #FF8A80;
+  --ink: #2E2A4A;
+  --ink-muted: #6B6580;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-nunito), 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-baloo), 'Baloo 2', cursive, sans-serif;
+}
+
+/* Custom Soft Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F3F0FB;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #B79FE0;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9A7DC9;
+}
+
+/* Tappable playful bounce */
+.btn-bouncy {
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease;
+}
+
+.btn-bouncy:hover {
+  transform: translateY(-2px);
+}
+
+.btn-bouncy:active {
+  transform: translateY(2px) scale(0.98);
+}
+
+/* Glassmorphism token */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}

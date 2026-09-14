@@ -1,0 +1,169 @@
+{
+  "id": "chunking",
+  "title": "Chunking Power",
+  "subtitle": "Break huge numbers and long sequences into bite-sized brain snacks!",
+  "techniqueCategory": "chunking",
+  "ageRange": [7, 12],
+  "badgeOnComplete": "fast-thinker",
+  "sections": [
+    {
+      "type": "hook",
+      "prompt": "Can you remember this 10-digit number in 5 seconds: 9812406735?",
+      "subtext": "It feels almost impossible until you group the digits!",
+      "timerSeconds": 10
+    },
+    {
+      "type": "story",
+      "panels": [
+        {
+          "id": 1,
+          "image": "aarav-phone-number",
+          "character": "aarav",
+          "text": "Aarav needs to remember his mother's new phone number: 9812406735. The 10 digits look like an impenetrable wall of numbers!",
+          "duration": 5
+        },
+        {
+          "id": 2,
+          "image": "professor-splitting-chunks",
+          "character": "professor_piko",
+          "text": "Professor Piko explains: 'Working memory can only hold 3 to 4 items at once. But you can pack multiple digits into a single chunk!'",
+          "duration": 6
+        },
+        {
+          "id": 3,
+          "image": "chunks-rhythm",
+          "character": "professor_piko",
+          "text": "Instead of 10 separate numbers, group them: [981] - [240] - [6735]. Say it with a musical rhythm: 981... 240... 67-35!",
+          "duration": 6
+        },
+        {
+          "id": 4,
+          "image": "aarav-singing",
+          "character": "aarav",
+          "text": "Wow! 3 chunks are just as easy to remember as 3 single digits! My brain loves chunks!",
+          "duration": 5
+        },
+        {
+          "id": 5,
+          "image": "byte-matrix",
+          "character": "byte",
+          "text": "CHUNK-BOT 3000 ONLINE! Let's slice and group big data streams in the simulation!",
+          "duration": 4
+        }
+      ]
+    },
+    {
+      "type": "explanation",
+      "title": "Working Memory & The 3-4 Chunk Rule",
+      "summary": "1. Working memory limit: 3–4 items  |  2. Combine adjacent digits into meaningful blocks  |  3. Add rhythm/cadence to lock it in",
+      "animation": {
+        "steps": [
+          "9 8 1 2 4 0 6 7 3 5 (10 separate pieces)",
+          "[ 9 8 1 ]   [ 2 4 0 ]   [ 6 7 3 5 ] (3 manageable chunks!)"
+        ]
+      }
+    },
+    {
+      "type": "simulation",
+      "config": {
+        "simulationType": "chunking",
+        "objects": [
+          { "id": "d1", "digit": "9" },
+          { "id": "d2", "digit": "8" },
+          { "id": "d3", "digit": "1" },
+          { "id": "d4", "digit": "2" },
+          { "id": "d5", "digit": "4" },
+          { "id": "d6", "digit": "0" },
+          { "id": "d7", "digit": "6" },
+          { "id": "d8", "digit": "7" },
+          { "id": "d9", "digit": "3" },
+          { "id": "d10", "digit": "5" }
+        ],
+        "interactions": [
+          "Group digits into 3 bracketed chunks: [981] [240] [6735]",
+          "Hit Test Chunking to verify rhythm and structure"
+        ],
+        "validation": { "chunks": [["9","8","1"], ["2","4","0"], ["6","7","3","5"]] },
+        "completionCondition": "All 3 digit chunks formed with correct grouping"
+      }
+    },
+    {
+      "type": "practice",
+      "level": "guided",
+      "questions": [
+        {
+          "id": "q301",
+          "type": "single_select",
+          "prompt": "Why does chunking make long sequences easy to remember?",
+          "options": [
+            { "id": "a", "label": "It turns 10 individual items into 3 grouped units, fitting our working memory capacity" },
+            { "id": "b", "label": "It makes the numbers smaller in value" },
+            { "id": "c", "label": "It deletes the unnecessary numbers" }
+          ],
+          "answer": "a",
+          "difficulty": 1,
+          "hints": [
+            "Our working memory can comfortably handle 3–4 chunks at once."
+          ],
+          "supportLevel": "guided"
+        },
+        {
+          "id": "q302",
+          "type": "single_select",
+          "prompt": "Which grouping of credit/library card number 452089103401 is easiest to remember?",
+          "options": [
+            { "id": "a", "label": "[4520] - [8910] - [3401] (3 blocks of 4)" },
+            { "id": "b", "label": "4-5-2-0-8-9-1-0-3-4-0-1 (12 separate digits)" },
+            { "id": "c", "label": "[452089103401] (one giant block of 12)" }
+          ],
+          "answer": "a",
+          "difficulty": 1,
+          "hints": ["Look for balanced groups of 3 or 4 digits."],
+          "supportLevel": "guided"
+        }
+      ]
+    },
+    {
+      "type": "practice",
+      "level": "independent",
+      "questions": [
+        {
+          "id": "q303",
+          "type": "single_select",
+          "prompt": "How would you chunk the date code 20260914?",
+          "options": [
+            { "id": "a", "label": "[2026] [09] [14] (Year - Month - Day)" },
+            { "id": "b", "label": "[202] [6091] [4]" },
+            { "id": "c", "label": "[2] [0260] [914]" }
+          ],
+          "answer": "a",
+          "difficulty": 2,
+          "hints": ["Use natural meaningful dates as your chunk boundaries."],
+          "supportLevel": "independent"
+        }
+      ]
+    },
+    {
+      "type": "recall",
+      "questions": [
+        {
+          "id": "q304",
+          "type": "single_select",
+          "prompt": "Independent Recall: What were the 3 chunks for Aarav's phone number 9812406735?",
+          "options": [
+            { "id": "a", "label": "[981] - [240] - [6735]" },
+            { "id": "b", "label": "[98] - [124] - [06735]" },
+            { "id": "c", "label": "[9812] - [406] - [735]" }
+          ],
+          "answer": "a",
+          "difficulty": 2,
+          "hints": [],
+          "supportLevel": "independent"
+        }
+      ]
+    },
+    {
+      "type": "result"
+    }
+  ]
+}
